@@ -7,25 +7,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
 
-app.get('/Clicker', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/Clicker/Clicker.html'));
-});
-
-app.get('/KMAIL', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/EMAIL/index.html'));
-});
-
-app.get('/2048', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/2048/index.html'));
-});
-
-app.get('/Login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/Login/page.html'));
-});
-
-app.get('/Gaming', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/Login/gaming.html'));
-});
+app.use("/Clicker", express.static(path.join(__dirname, '../public/Clicker')));
+app.use("/KMAIL", express.static(path.join(__dirname, '../public/EMAIL')));
+app.use("/2048", express.static(path.join(__dirname, '../public/2048')));
+app.use("/Login", express.static(path.join(__dirname, '../public/Login')));
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
