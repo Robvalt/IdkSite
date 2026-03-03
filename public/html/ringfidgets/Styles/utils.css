@@ -1,0 +1,23 @@
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.small-padding {
+    padding: 15px 15px 15px 15px;
+}
+
+.medium-padding {
+    padding: 20px 20px 20px 20px;
+}
+
+.big-padding {
+    padding: 30px 30px 30px 30px;
+}

@@ -1,0 +1,50 @@
+<head>
+    <!-- sb Init -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <input id="email" type="email" placeholder="email" required>
+    <input id="pass" type="password" placeholder="password" required>
+    <button id="submit">create</button>
+    <p id="status"></p>
+
+    <script>
+        // 1. Properly initialized client
+        const sb = window.supabase.createClient(
+            'https://zqfljtgheneihftmuoii.supabase.co',
+            'sb_publishable_ciQbcv8Fx4weHN44EPkSmA__c3aST8X'
+        );
+
+        // 2. Optimized asynchronous sign-up function
+        async function signUpNewUser() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pass").value;
+            const statusEl = document.getElementById("status");
+
+            if (!email || !password) {
+                statusEl.innerText = "fill in da stuff.";
+                return;
+            }
+
+            statusEl.innerText = "working";
+
+            // 3. Using the correct sb client instance
+            const { data, error } = await sb.auth.signUp({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                console.error('Sign up error:', error.message);
+                statusEl.innerText = "Error: " + error.message;
+                return;
+            }
+
+            console.log('User signed up:', data.user);
+            statusEl.innerText = "created";
+        }
+
+        // 4. Clean event listener
+        document.getElementById("submit").addEventListener("click", signUpNewUser);
+    </script>
+</body>

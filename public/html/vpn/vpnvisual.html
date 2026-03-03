@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google</title>
+    <link rel="icon" href="/Google.svg" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar styling */
+        #sidebar {
+            width: 250px;
+            background: #f9f9f9;
+            border-right: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        #js-code {
+            flex: 1;
+            width: 100%;
+            resize: none;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #run-js {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Main content area */
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Search bar styling */
+        #search-container {
+            display: flex;
+            padding: 10px;
+            background: #f0f0f0;
+        }
+
+        #input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #update {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Iframe takes available space */
+        #iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+        }
+
+        /* Tabs at the bottom */
+        #tabs {
+            display: flex;
+            justify-content: space-around;
+            background: #333;
+            color: white;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar for JS -->
+    <div id="sidebar">
+        <textarea id="js-code" placeholder="Write JS here..."></textarea>
+        <button id="run-js">Run JS in iframe</button>
+    </div>
+
+    <!-- Main content -->
+    <div id="main">
+        <!-- Search bar -->
+        <div id="search-container">
+            <input type="text" id="input" placeholder="Enter a website URL">
+            <button id="update">Go</button>
+        </div>
+
+        <!-- Main iframe -->
+        <iframe id="iframe" src="https://google.com"></iframe>
+
+        <!-- Tabs at the bottom -->
+        <div id="tabs">
+            <div class="tab" data-url="https://kitten158.codehs.me/Login/gaming.html">Games</div>
+            <div class="tab" data-url="https://kitten158.codehs.me/FNAF.html">FNAF 4</div>
+            <div class="tab" data-url="https://kitten158.codehs.me/DOOMETERNAL.html">DOOM ETERNAL</div>
+            <div class="tab" data-url="https://kitten158.codehs.me/2048/index.html">2048 KITTYMOD</div>
+            <div class="tab" data-url="https://duck.quackprep.com">Quackprep</div>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("input");
+        const ifr = document.getElementById("iframe");
+        const btn = document.getElementById("update");
+        const tabs = document.querySelectorAll(".tab");
+        const runBtn = document.getElementById("run-js");
+        const jsCode = document.getElementById("js-code");
+        const blankWindow = window.open('about:blank', '_blank');
+
+
+        btn.addEventListener("click", () => {
+            let url = input.value.trim();
+            if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("file://") && !url.startsWith("file:///")) {
+                url = "https://" + url;
+            }
+            ifr.src = url;
+        });
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                ifr.src = tab.dataset.url;
+                input.value = tab.dataset.url;
+            });
+        });
+
+        runBtn.addEventListener("click", () => {
+            try {
+                const code = jsCode.value;
+                ifr.contentWindow.eval(code);
+            } catch (e) {
+                alert("Error running JS: " + e.message);
+            }
+        });
+    </script>
+</body>
+</html>

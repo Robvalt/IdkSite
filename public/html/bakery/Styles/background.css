@@ -1,0 +1,14 @@
+.content {
+    margin-top: 80px;
+    padding: 20px;
+}
+
+body {
+    background: 
+    linear-gradient(rgba(157, 6, 122, 0.25), rgba(240, 4, 185, 0.25)),
+    url('../Images/Background-Cake.svg') no-repeat center center;
+    background-repeat: no-repeat; /* Prevents the image from tiling */
+    background-position: center center; /* Centers the image in the container */
+    background-size: cover; /* Scales the image to cover the entire container */
+    background-attachment: fixed; 
+}

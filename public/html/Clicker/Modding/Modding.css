@@ -1,0 +1,65 @@
+/* General Page Styling */
+body {
+  background-color: white;
+  overflow: scroll;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+button {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* Back Button */
+#backBtn {
+  margin-top: 40px;
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Mods List */
+#mods-container {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  width: 250px;
+  max-height: 90%;
+  overflow-y: scroll;
+  background-color: #0004ff;
+  border: 5px solid #ff5e00; // #ff5e00
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.mod-enable {
+  background-color: #ff0000;
+}
+
+#mods-container h2 {
+  margin-top: 0;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+}
+
+#mods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#mods div {
+  padding: 4px 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: white;
+}

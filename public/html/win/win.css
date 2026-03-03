@@ -1,0 +1,105 @@
+@import url("https://unpkg.com/98.css");
+        /* Base styles for the custom element */
+        window-98 {
+          display: block;
+          position: absolute;
+          min-width: 200px;
+          min-height: 150px;
+        }
+    
+        /* Ensure content inside the window content area is properly contained */
+        .window-content-area {
+          padding: 10px;
+          overflow: auto;
+          height: calc(100% - 28px); /* Adjust based on title bar height */
+        }
+        
+        body {
+            background-color: #098387;
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+}
+
+/* Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+/* Start button */
+.start-button {
+    height: 24px;
+    padding: 0 10px;
+    font-weight: bold;
+    border: 2px outset #ffffff;
+    background: #c0c0c0;
+    cursor: pointer;
+}
+
+.start-button:active {
+    border: 2px inset #ffffff;
+}
+
+/* Divider */
+.taskbar-divider {
+    width: 2px;
+    height: 22px;
+    background: #808080;
+    margin: 0 6px;
+}
+
+/* Clock */
+.taskbar-time {
+    margin-left: auto;
+    padding: 0 10px;
+    border: 2px inset #ffffff;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+/* Start menu */
+.start-menu {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    width: 180px;
+    background: #c0c0c0;
+    border: 2px outset #ffffff;
+    display: none;
+}
+
+.start-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+}
+
+.start-menu li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.start-menu li:hover {
+    background: navy;
+    color: white;
+}
+.no-98-css {
+    all: unset;
+    /* You may need to add specific styles here to make it look the way you want */
+    box-sizing: border-box; /* unset might remove this important property */
+}
+.black-input {
+  background-color: black !important;
+  color: white !important; /* Ensures text is visible */
+}

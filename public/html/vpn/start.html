@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Redirect</title>
+</head>
+<body>
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Submit</button>
+    <p id="message"></p>
+
+    <script>
+        function checkPassword() {
+            const passwordOne = "4323";
+            const urlOne = "https://kitten158.codehs.me/vpn/launcher.html";
+
+            const passwordTwo = "0329";
+            const urlTwo = "https://kitten158.codehs.me/vpn/wah.html";
+
+            const userInput = document.getElementById("passwordInput").value;
+            const messageArea = document.getElementById("message");
+
+            if (userInput === passwordOne) {
+                window.location.href = urlOne;
+            } else if (userInput === passwordTwo) {
+                window.location.href = urlTwo;
+            } else {
+                messageArea.textContent = "Invalid password. Please try again.";
+                messageArea.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

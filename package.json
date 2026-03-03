@@ -1,0 +1,29 @@
+{
+  "name": "idksite",
+  "version": "1.0.0",
+  "description": "My website for school",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server/test.js",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robvalt/IdkSite.git"
+  },
+  "keywords": [
+    "school",
+    "website",
+    "nodejs",
+    "render"
+  ],
+  "author": "The kitty in the wind",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/robvalt/IdkSite/issues"
+  },
+  "homepage": "https://github.com/robvalt/IdkSite#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

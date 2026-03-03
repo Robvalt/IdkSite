@@ -1,0 +1,16 @@
+<button id="startbtn">Launch</button>
+<audio id="beepaudio" src="https://codehs.com/uploads/fa90046bf0743a5475ac148750e4631c" loop></audio>
+<img id="img" src="https://codehs.com/uploads/8a0f4d112118355113725724b5beb481" style="display: none;">
+<script>
+    const btn = document.getElementById("startbtn");
+    const audio = document.getElementById("beepaudio");
+    const img = document.getElementById("img");
+    btn.addEventListener("click", () => {
+        btn.style.display = "none";
+        img.style.display = "block";
+        audio.play()
+        img.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+    })
+    });
+</script>

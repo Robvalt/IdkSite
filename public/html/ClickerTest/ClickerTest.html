@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Smile Clicker</title>
+        <link rel="stylesheet" href="ClickerTest.css">
+        <link rel="icon" href="https://codehs.com/static/img/logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center><h1 id="Title">Smile Clicker</h1></center>
+        <center><h3 id="Count">Smileys : <span id="pennyDisplay">0</span></h4></center>
+
+        <!-- Shop Button -->
+        <a href="Shop/Shop.html"><button id="shopBtn">🛍️ Shop</button></a>
+        <a onclick='window.open("../Login/page.html");'><button id="loginBtn">Login</button></a>
+
+        <button id="resetBtn" onclick="resetPennys();">RESET SMILEYS</button>
+
+        <img id="button" class="rotate-img" src="Recources/smile-DEFAULT.svg">
+
+        <script src="ClickerTest.js"></script>
+    </body>
+</html>

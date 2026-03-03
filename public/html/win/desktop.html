@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Windows 98</title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="win.css" />
+        <script src="win.js"></script>
+        <script src="selectionbox.js"></script>
+    </head>
+
+    <body>
+        <div id="win-main">
+            <window-98 title="Setup">
+                <h4>Windows 98 Setup</h4>
+                <h6>The Setup Is Almost Done, To Finish Press Below. <a href="https://98.js.org">ORIGINAL</a></h6>
+                <button onclick="document.documentElement.requestFullscreen();this.closest('window-98').remove();">Finish Setup</button>
+            </window-98>
+
+            
+            
+            <window-98 title="Command Prompt" id="cmd-win">
+                <input placeholder="Insert Command" type="Text" id="cmd-input" class="no-98-css">
+                <input placeholder="Insert Argument" type="Text" id="cmd-arginput" class="no-98-css">
+                <br>
+                <br>
+                <button id="cmd-exec">Execute</button>
+                <br>
+                <br>
+            </window-98>
+            
+            
+            
+
+            <div class="taskbar">
+                    <button class="start-button" onclick="toggleStartMenu()">Start</button>
+
+                <div class="taskbar-divider"></div>
+
+                <div class="taskbar-time" id="clock">
+                    00:00 PM
+                </div>
+            </div>
+
+            <div class="start-menu" id="startMenu">
+                <ul>
+                    <li onclick="alert('Not Implemented')">My Computer</li>
+                    <li onclick="document.getElementById('cmd-win').style.display = 'none'">Command Prompt</li>
+                    <li onclick="alert('Shutting down...');document.getElementById('win-main').remove();document.body.style.background = '#000000';">Shut Down</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

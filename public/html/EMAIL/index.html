@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KMAIL</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h1>Send Email</h1>
+  <form id="emailForm">
+    <input type="email" id="receiver" placeholder="To" required><br><br>
+    <textarea id="msg" placeholder="Message" required></textarea><br><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <p id="status"></p>
+
+  <h2>📥 Received Emails</h2>
+  <div id="receivedEmails"></div>
+
+  <h2>📤 Sent Emails</h2>
+  <div id="sentEmails"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

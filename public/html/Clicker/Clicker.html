@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>[MODDING] NEAAAT Clicker</title>
+  <link rel="stylesheet" href="Clicker.css">
+  <link rel="icon" href="https://codehs.com/static/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <audio src="https://codehs.com/uploads/4c9338db7ef8a7437eb37a41f91abc2c" autoplay loop></audio>
+
+  <center><h1 id="Title">NEAAAT Clicker</h1></center>
+  <center><h4><span id="pennyTitle">NEAAAT Points</span>: <span id="pennyDisplay">0</span></h4></center>
+
+  <!-- Clicker Button -->
+  <img onclick="popanim(this)" id="button" src="https://codehs.com/uploads/b9f05275418af54cacd68ddcca3e3afe" alt="Click Me">
+
+  <!-- Reset Button -->
+  <button id="resetBtn" onclick="resetPennys();popanim(this)">RESET NEAAAT POINTS</button>
+
+  <!-- Mods Button -->
+  <button id="moddingBtn" onclick='window.location.href = "./Modding/Modding.html";'>MODDING</button>
+
+  <!-- Griffin DVD Logo -->
+  <img onclick='popanim(this)' id="dvd" src="https://codehs.com/uploads/abe5c2da2a11e25bc2d0d4976f7a78fe" alt="DVD Logo">
+
+  <!-- Shop Button -->
+  <a href="Shop/ClickerShop.html"><button id="shopBtn">🛍️ Shop</button></a>
+  <a onclick='window.open("../Login/page.html");'><button id="loginBtn">Login</button></a>
+  
+
+  <!-- Leaderboard UI -->
+  <div id="leaderboard-container">
+    <h2>Leaderboard</h2>
+    <ul id="leaderboard"></ul>
+    <input type="text" id="username" placeholder="Your name">
+    <button id="submitScoreBtn">Submit Score</button>
+    <p style="color: #ff5e00;" id="lb-status"></p>
+  </div>
+
+  <script src="Clicker.js"></script>
+  <script src="ModActivator.js"></script>
+</body>
+</html>

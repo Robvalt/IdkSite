@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>[MODDING] NEAAAT Clicker MODS</title>
+  <link rel="stylesheet" href="Modding.css">
+  <link rel="icon" href="https://codehs.com/static/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <center><h1 id="Title">Clicker Mods</h1></center>
+
+  <!-- Mods UI -->
+  <div id="mods-container">
+    <h2>Mods</h2>
+    <ul id="mods">
+        <div id="mod-classic">
+            <h3 class="mod-title">CLASSIC</h3>
+            <p class="mod-description">Takes the gui and restores the old penny clicker!</p>
+            <button class="mod-enable" id="modclassic-btn">Enable Mod</button>
+        </div>
+    </ul>
+    <p style="color: #ff5e00;" id="lb-status"></p>
+  </div>
+
+  <center><a href="../Clicker.html"><button id="backBtn">⬅️ Back to Game</button></a></center>
+
+  <script src="Scripts/ModEnabling.js"></script>
+  <script src="Scripts/ModEnableBtns.js"></script>
+</body>
+</html>

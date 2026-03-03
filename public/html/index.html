@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="api.js"></script>
+    <title>Idk Website</title>
+    <link rel="icon" href="https://codehs.com/static/img/logo.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: blue;
+            overflow: hidden;
+            font-family: 'Comic Sans MS';
+            color: white;
+            text-align: center;
+        }
+
+        #Title {
+            font-size: 3em;
+            margin-top: 40px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .bubble-link {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            animation: floatUp linear infinite;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .bubble-link:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: #003366;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Bubble positions and speeds */
+        .bubble1 { left: 5%; bottom: 0; animation-duration: 20s; }
+        .bubble2 { left: 20%; bottom: 0; animation-duration: 25s; }
+        .bubble3 { left: 30%; bottom: 0; animation-duration: 18s; }
+        .bubble4 { left: 45%; bottom: 0; animation-duration: 22s; }
+        .bubble5 { left: 60%; bottom: 0; animation-duration: 30s; }
+        .bubble6 { left: 75%; bottom: 0; animation-duration: 37s; }
+        .bubble7 { left: 90%; bottom: 0; animation-duration: 40s; }
+    </style>
+</head>
+<body>
+    <img src="https://codehs.com/static/img/logo.png" alt="Image not found" width="50px" height="50px">
+    <h1 id="Title">Hello :3</h1>
+
+    <a href="Clicker/Clicker.html" class="bubble-link bubble1">NEAAAT Clicker</a>
+    <a href="https://www.canva.com/design/DAGyaQo-hq0/sOU47a00oEh2RXdq5CKv9w/edit?utm_content=DAGyaQo-hq0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="bubble-link bubble2">Clicker Tutorial</a>
+    <a onclick='window.open("./EMAIL/index.html")' class="bubble-link bubble4">KMAIL (gmail remake)</a>
+    <a href="2048/index.html" class="bubble-link bubble6">2048 Game (WIP)</a>
+    <a onclick='window.open("./Login/page.html")' class="bubble-link bubble7">Login</a>
+</body>
+</html>

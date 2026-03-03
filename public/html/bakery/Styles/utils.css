@@ -1,0 +1,56 @@
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.small-padding {
+    padding: 15px 15px 15px 15px;
+}
+
+.medium-padding {
+    padding: 20px 20px 20px 20px;
+}
+
+.big-padding {
+    padding: 30px 30px 30px 30px;
+}
+
+.small-image {
+    width: 50px;
+    height: 50px;
+}
+
+.medium-image {
+    width: 65px;
+    height: 65px;
+}
+
+.big-image {
+    width: 100px;
+    height: 100px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.no-margin_padding {
+    margin: 0;
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0
+}
