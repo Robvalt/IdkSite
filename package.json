@@ -4,7 +4,6 @@
   "description": "My website for school",
   "main": "index.js",
   "scripts": {
-    "test": "node server/test.js",
     "start": "node server/index.js"
   },
   "repository": {
