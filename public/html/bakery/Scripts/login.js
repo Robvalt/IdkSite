@@ -28,7 +28,7 @@ signup_btn.addEventListener("click", async () => {
   });
 
   if (error) {
-    console.error("Sign up error:", error.message);
+    console.error("Login error:", error.message);
     info_label.innerText = "Error: " + error.message;
     return;
   }
