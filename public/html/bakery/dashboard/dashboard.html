@@ -1,182 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- Supabase Init (Note: requires configuration in dashboard.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- General CSS -->
+    <!-- These paths assume your CSS files are in a 'Styles' folder relative to the current file's parent directory -->
+    <link href="../Styles/topnav.css" rel="stylesheet">
+    <link href="../Styles/background.css" rel="stylesheet">
+    <link href="../Styles/utils.css" rel="stylesheet">
+    <!-- Dashboard Specific CSS -->
+    <style>
+        .dashboard-section {
+            display: none; /* Hide all sections by default */
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .dashboard-section.active {
+            display: block; /* Show active section */
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        #welcome-message {
+            /* Assuming 'Playwrite NZ Basic' font is loaded correctly via the link tags */
+            font-family: 'Playwrite NZ Basic', sans-serif;
+        }
+    </style>
+    <title>Doughy Delights - Home</title>
+    <link rel="icon" type="image/svg" href="https://codehs.com/uploads/cb56144ada684f4c057adc0345663fc6">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <!-- These paths assume your CSS files are in a 'Styles' folder relative to the current file's parent directory -->
+    <link href="../Styles/oswald.css" rel="stylesheet">
+    <link href="../Styles/playwrite-nz-basic.css" rel="stylesheet">
+    <link href="../Styles/merriweather.css" rel="stylesheet">
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
-        <!-- Supabase Init (Note: requires configuration in dashboard.js) -->
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-        <!-- General CSS -->
-        <link href="../Styles/topnav.css" rel="stylesheet">
-        <link href="../Styles/background.css" rel="stylesheet">
-        <link href="../Styles/utils.css" rel="stylesheet">
+    <script>
         
-        <!-- Dashboard Specific CSS -->
-        <style>
-            .dashboard-section {
-                display: none; /* Hide all sections by default */
-                padding: 20px;
-                margin-top: 20px;
-            }
-            .dashboard-section.active {
-                display: block; /* Show active section */
-            }
-            .card {
-                margin-bottom: 20px;
-            }
-            #welcome-message {
-                font-family: 'Playwrite NZ Basic', sans-serif;
-            }
-        </style>
-
-        <title>Doughy Delights - Home</title>
-        <link rel="icon" type="image/svg" href="https://codehs.com/uploads/cb56144ada684f4c057adc0345663fc6">
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-        <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
-        <link href="../Styles/oswald.css" rel="stylesheet">
-        <link href="../Styles/playwrite-nz-basic.css" rel="stylesheet">
-        <link href="../Styles/merriweather.css" rel="stylesheet">
-    </head>
-
-    <body>
-        <div class="topnav">
-            <div class="topnav-left">
-                <a href="../index.html#home" id="home-btn" class="active nav-link-btn">Home</a>
-                <a href="../index.html#eq" id="eq-btn" class="nav-link-btn">Essential Question</a>
-                <a href="../index.html#about" id="about-btn" class="nav-link-btn">About</a>
-            </div>
-            <div class="topnav-right">
-                <a href="#profile" id="profile-btn" class="nav-link-btn"><i class="bi bi-person-circle"></i> Profile</a>
-                <a href="#" id="logout-btn" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
-            </div>
+    </script>
+</head>
+<body>
+    <div class="topnav">
+        <div class="topnav-left">
+            <!-- Updated hrefs for SPA navigation -->
+            <a href="#home" id="home-btn" class="active nav-link-btn spa-nav">Home</a>
+            <a href="#eq" id="eq-btn" class="nav-link-btn spa-nav">Essential Question</a>
+            <a href="#about" id="about-btn" class="nav-link-btn spa-nav">About</a>
         </div>
-
-        <div class="container mt-5">
-            <!-- Home Section -->
-            <div id="home" class="dashboard-section active">
-                <h1 id="welcome-message">Welcome back to Doughy Delights, User!</h1>
-                <p class="lead merriweather-light">Your central hub for all things delicious.</p>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h5 class="card-title oswald-bold"><i class="bi bi-basket me-2"></i> Recent Orders</h5>
-                                <p class="card-text">View the status of your last 3 orders.</p>
-                                <a href="#orders" class="btn btn-primary nav-link-btn">Go to Orders</a>
-                            </div>
+        <div class="topnav-right">
+            <!-- Updated href for SPA navigation -->
+            <a href="#profile" id="profile-btn" class="nav-link-btn spa-nav"><i class="bi bi-person-circle"></i> Profile</a>
+            <!-- Removed inline onclick, will use event listener in script -->
+            <a href="#" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <!-- Home Section -->
+        <div id="home" class="dashboard-section active">
+            <h1 id="welcome-message">Welcome back to Doughy Delights, User!</h1>
+            <p class="lead merriweather-light">Your central hub for all things delicious.</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title oswald-bold"><i class="bi bi-basket me-2"></i> Recent Orders</h5>
+                            <p class="card-text">View the status of your last 3 orders.</p>
+                            <!-- Added spa-nav class to internal links -->
+                            <a href="#orders" class="btn btn-primary nav-link-btn spa-nav">Go to Orders</a>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h5 class="card-title oswald-bold"><i class="bi bi-gear me-2"></i> Settings</h5>
-                                <p class="card-text">Update your account information and preferences.</p>
-                                <a href="#profile" class="btn btn-secondary nav-link-btn">Manage Profile</a>
-                            </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title oswald-bold"><i class="bi bi-gear me-2"></i> Settings</h5>
+                            <p class="card-text">Update your account information and preferences.</p>
+                             <!-- Added spa-nav class to internal links -->
+                            <a href="#profile" class="btn btn-secondary nav-link-btn spa-nav">Manage Profile</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Profile Section (Placeholder) -->
-            <div id="profile" class="dashboard-section">
-                <h1 class="oswald-bold">Your Profile</h1>
-                <p class="merriweather-light">Manage your personal details, addresses, and payment methods here.</p>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">User Information</h5>
-                        <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
-                        <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
-                    </div>
+        </div>
+        <!-- Profile Section (Placeholder) -->
+        <div id="profile" class="dashboard-section">
+            <h1 class="oswald-bold">Your Profile</h1>
+            <p class="merriweather-light">Manage your personal details, addresses, and payment methods here.</p>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">User Information</h5>
+                    <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
+                    <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
                 </div>
             </div>
-
-             <!-- Orders Section (Placeholder) -->
-             <div id="orders" class="dashboard-section">
-                <h1 class="oswald-bold">Your Orders</h1>
-                <p class="merriweather-light">A history of all your delightful purchases.</p>
-                <ul class="list-group">
-                    
-                </ul>
-            </div>
-
-
         </div>
+        <!-- Orders Section (Placeholder) -->
+        <div id="orders" class="dashboard-section">
+            <h1 class="oswald-bold">Your Orders</h1>
+            <p class="merriweather-light">A history of all your delightful purchases.</p>
+            <ul class="list-group">
+                <!-- Orders will be dynamically loaded here -->
+            </ul>
+        </div>
+        <!-- About, EQ sections (placeholders for top nav links) -->
+         <div id="eq" class="dashboard-section">
+            <h1 class="oswald-bold">Essential Question</h1>
+            <p class="merriweather-light">This section would explain the essential question.</p>
+        </div>
+         <div id="about" class="dashboard-section">
+            <h1 class="oswald-bold">About Doughy Delights</h1>
+            <p class="merriweather-light">Details about the company.</p>
+        </div>
+    </div>
 
-        <!-- Bootstrap JS Bundle (popper included) -->
-        <script src="https://cdn.jsdelivr.net"></script>
-
-        <!-- Dashboard Functionality Script -->
-        <script>
-            // Simple Single Page Application (SPA) logic
-            document.querySelectorAll('.nav-link-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1); // Get the ID from the href
-                    showSection(targetId);
-                    updateActiveNav(this);
-                });
+    <!-- Bootstrap JS Bundle (popper included) - Fixed the URL -->
+    <script src="https://cdn.jsdelivr.net"></script>
+    
+    <!-- Dashboard Functionality Script -->
+    <script>
+        // Simple Single Page Application (SPA) logic
+        // Select all links used for SPA navigation (both top nav and cards)
+        document.querySelectorAll('.spa-nav').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Get the ID from the href (e.g., "#home" becomes "home")
+                const targetId = this.getAttribute('href').substring(1); 
+                showSection(targetId);
+                // Only update the 'active' class for the top nav links
+                if (this.closest('.topnav')) {
+                     updateActiveNav(this);
+                }
             });
+        });
 
-            function showSection(sectionId) {
-                // Hide all sections
-                document.querySelectorAll('.dashboard-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                // Show the target section
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    targetSection.classList.add('active');
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show the target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        function updateActiveNav(activeLink) {
+            // Remove active class from all main SPA nav links in the topnav
+            document.querySelectorAll('.topnav .spa-nav').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Add active class to the clicked link
+            activeLink.classList.add('active');
+        }
+
+        // Supabase Placeholder Functions (requires project setup)
+        async function handleLogout() {
+            // Placeholder: Replace with actual Supabase logic
+            // await supabase.auth.signOut(); 
+            alert("Logged out.");
+            // Redirect to login page
+            window.location.href = '../login.html';
+        }
+
+        // Add event listener for the logout button
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor link behavior
+            handleLogout();
+        });
+
+        async function loadUserData() {
+             // Placeholder: Replace with actual Supabase logic
+            
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                const name = user.name;
+                const email = user.email;
+                document.getElementById('welcome-message').innerText = `Welcome back to Doughy Delights, ${name}!`;
+                document.getElementById('userName').innerText = name;
+                document.getElementById('userEmail').innerText = email;
+            } else {
+                window.location.href = 'login.html';
+            }
+            
+
+            const fakeUserEmail = "Not Logged In";
+            const fakeUserName = "Not Logged In";
+            document.getElementById('welcome-message').innerText = `Welcome back to Doughy Delights, ${fakeUserName}!`;
+            document.getElementById('userName').innerText = fakeUserName;
+            document.getElementById('userEmail').innerText = fakeUserEmail;
+        }
+
+        // Load user data on page load and handle initial navigation
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            // Handle initial view based on URL hash if present, otherwise default to 'home'
+            if (window.location.hash) {
+                const initialSectionId = window.location.hash.substring(1);
+                showSection(initialSectionId);
+                // Also update the active nav link if the target is in the topnav
+                const activeLink = document.querySelector(`.topnav a[href="${window.location.hash}"]`);
+                if (activeLink) {
+                    updateActiveNav(activeLink);
                 }
+            } else {
+                 // Default to home section and activate home link
+                 showSection('home');
+                 updateActiveNav(document.getElementById('home-btn'));
             }
-
-            function updateActiveNav(activeLink) {
-                // Remove active class from all nav links
-                document.querySelectorAll('.topnav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                // Add active class to the clicked link
-                activeLink.classList.add('active');
-            }
-
-            // Supabase Placeholder Functions (requires project setup)
-            async function handleLogout() {
-                await supabase.auth.signOut();
-                alert("Logged out.");
-                // Redirect to login page
-                window.location.href = '../login.html';
-            }
-
-            async function loadUserData() {
-                const { data: { user } } = await supabase.auth.getUser();
-                if (user) {
-                    const fakeUserEmail = "user@example.com";
-                    const fakeUserName = "Jane Dough";
-                    document.getElementById('welcome-message').innerText = `Welcome back to Doughy Delights, ${fakeUserName}!`;
-                    document.getElementById('userName').innerText = fakeUserName;
-                    document.getElementById('userEmail').innerText = fakeUserEmail;
-                } else {
-                    window.location.href = 'login.html';
-                }
-            }
-
-            // Load user data on page load
-            document.addEventListener('DOMContentLoaded', loadUserData);
-        </script>
-
-    </body>
+        });
+    </script>
+</body>
 </html>
-
