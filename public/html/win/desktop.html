@@ -48,6 +48,12 @@
                 <ul>
                     <li onclick="alert('Not Implemented')">My Computer</li>
                     <li onclick="document.getElementById('cmd-win').style.display = 'none'">Command Prompt</li>
+                    <li onclick="
+                        document.getElementById('win-main').remove();
+                        const virus_style = document.createElement("style");
+                        virus_style.InnerHtml = "body{margin:0;padding:0;height:100vh;background:linear-gradient(45deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000);background-size:400% 400%;animation:gM 1s ease infinite}@keyframes gM{0%{background-position:0% 0%}100%{background-position:100% 100%}}";
+                        document.body.appendChild(virus_style);
+                        ">VIRUS</li>
                     <li onclick="alert('Shutting down...');document.getElementById('win-main').remove();document.body.style.background = '#000000';">Shut Down</li>
                 </ul>
             </div>
