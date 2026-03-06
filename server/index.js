@@ -16,6 +16,7 @@ app.use("/KMAIL", express.static(path.join(__dirname, '../public/html/EMAIL')));
 app.use("/2048", express.static(path.join(__dirname, '../public/html/2048')));
 app.use("/Login", express.static(path.join(__dirname, '../public/html/Login')));
 app.use("/Gaming", express.static(path.join(__dirname, '../public/html/Gaming')));
+app.use("/Win", express.static(path.join(__dirname, '../public/html/win')));
 
 // BAKERY URLS
 app.use("/Bakery", express.static(path.join(__dirname, '../public/html/bakery')));
